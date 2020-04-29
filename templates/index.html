@@ -2,41 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Chat</title>
+	<title>Document</title>\
+	<link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
 </head>
 <body>
-
-<ul id="messages">
-	{%for msg in messages%}
-	<li>{{msg['message']}}</li>
-	{% endfor %}
-</ul>	
-<input type="text" id="myMessage">
-<button id='sendbutton'>Отправить</button>
-
-	
-<script type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){
-	var socket = io.connect('http://127.0.0.1:5000')
-
-	socket.on('connect', function() {
-		socket.send('Подключен');
-	});
-
-	socket.on('message', function(msg) {
-		$('#messages').append('<li>'+ msg +'</li>');
-		console.log('Получено');
-	});
-
-	$('#sendbutton').on('click', function(){
-		socket.send($('#myMessage').val());
-		$('#myMessage').val('');
-	});
-});
-</script>
-
+	<form action="/" method='post' class="form-group">
+	  <label class="col-form-label col-form-label-lg" for="inputLarge">Кому вы хотите написать</label>
+	  <input name='user' class="form-control form-control-lg" type="text" placeholder="имя" id="inputLarge">
+	</form>
 </body>
 </html>
